@@ -18,6 +18,7 @@
 .head {
 
    width: 200px;
+   position: absolute;
     /*margin-top: 20px;*/
     /*margin-left: 50%;*/
    /* box-shadow: -2px 4px 2px  #b3bbc6;*/

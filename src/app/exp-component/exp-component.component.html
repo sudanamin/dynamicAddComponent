@@ -2,11 +2,11 @@
 
 
 
-  <div class ="head"   style="z-index: 1000"><div class ="spec" > 
-      <img (click)="addSticky()" src="../assets/add.png" alt="Mountain View" style="width:12px;height:12px;
-      position: relative;bottom:2px;right:5px"> 
+  <div class ="head" [style.left.px] = "_topLeft.left"  [style.top.px] = "_topLeft.top" ><div class ="spec"> 
+      <img (click)="addSticky($event)" src="../assets/add.png" alt="Mountain View" style="width:12px;height:12px;
+      position: relative;bottom:6px;right:5px"> 
       <img  (click)="deleteSticky()" src="../assets/close b.png"  
-      alt="Mountain View" style=" position: relative;right:-149px;bottom:2px; width:20px;height:20px;"></div> 
+      alt="Mountain View" style=" position: relative;right:-149px;bottom:1px; width:20px;height:20px;"></div> 
       <div class ="sticker2" [style.backgroundColor]="_StickyColorr" > 
       <p class="paragraphClass"  contenteditable="true">Amin</p>
       </div></div>

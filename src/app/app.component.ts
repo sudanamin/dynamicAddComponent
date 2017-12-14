@@ -17,13 +17,14 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{ 
+  topLeft: any;
 
   @ViewChild('parent', { read: ViewContainerRef })
    container: ViewContainerRef;
 
    color : string;
 
-   constructor(private _cfr: ComponentFactoryResolver , private appRef: ApplicationRef) { }
+   constructor(private _cfr: ComponentFactoryResolver ) { }
    ngOnInit(){ }
 
    setColor(event){
@@ -33,7 +34,13 @@ export class AppComponent implements OnInit{
    }
    mouseUp(event){
     this.color = event.target.style.backgroundColor;
+    this.topLeft = {
+      left: event.target.getBoundingClientRect().left + window.scrollX,
+      top: event.target.getBoundingClientRect().top + window.scrollX,
+    }
+
      this.addComponent() ; 
+
      console.log("mouse up up up ");
     }
    ngAfterViewInit() {
@@ -59,5 +66,16 @@ export class AppComponent implements OnInit{
     //  this.appRef.attachView(expComponent.hostView);
       expComponent.instance._ref = expComponent;
       expComponent.instance._StickyColorr = this.color;
+      expComponent.instance._topLeft = this.topLeft;
+      expComponent.instance._container = this.container;
+      
+
   }
+
+  /* getOffset(el) {
+    el = el.getBoundingClientRect();
+    return {
+        left: el.left + window.scrollX,
+        top: el.top + window.scrollY
+      }*/
 }
