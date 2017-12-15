@@ -2,10 +2,20 @@ import { Component, OnInit ,ComponentFactoryResolver, ViewContainerRef, Input } 
 import * as elementResizeDetectorMaker from '.../../element-resize-detector';
 
 // firebase firestore
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument ,AngularFirestoreCollection} from 'angularfire2/firestore';
 import { AuthService } from '../auth.service';
+
+
 //
 declare var $: any;
+
+interface Sticky {
+  sdata: string;
+  top: string;
+  left?: string;
+  x?: string;
+  y?: string;
+}
 @Component({
   selector: 'app-exp',
   templateUrl: './exp-component.component.html',
@@ -19,12 +29,21 @@ export class ExpComponent {
   _container: ViewContainerRef;
   pText:string ;
    liveText:string = "li";
+   userid: string ;
 
   constructor(private _cfr: ComponentFactoryResolver,
               private afs: AngularFirestore,
-              private auth :AuthService 
-  
-             ) { }
+              private auth :AuthService)
+              
+            {
+
+              this.auth.user
+              .subscribe(user => {
+                if (user) {
+                  this.userid = user.uid;
+                     }
+              })
+            }
 
 
   deleteSticky() {
@@ -44,8 +63,38 @@ export class ExpComponent {
     this.liveText = "abcd";
   }
 
+  mouseUp(event){
+   // this.color = event.target.style.backgroundColor;
+    this._topLeft = {
+      left: event.target.getBoundingClientRect().left + window.scrollX,
+      top: event.target.getBoundingClientRect().top + window.scrollX,
+    }
+
+    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/sticky`);
+    collection.update({
+      "top": this._topLeft.top,
+      "left": this._topLeft.left }
+    )
+    .then(function() {
+      console.log("Document successfully updated!");
+  });
+    
+  }
+
   textChanged(event){
     this.pText=event.target.innerHTML;
+    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/sticky`);
+    
+    
+
+    stickyRef.update({
+      "sdata": this.pText}
+    )
+    .then(function() {
+      console.log("Document successfully updated!");
+  });
+
+
   }
 
   ngAfterViewInit() {
@@ -101,7 +150,7 @@ export class ExpComponent {
 setInputBehavior(){
 
   $('.paragraphClass').on('input', function() {
-    //   alert(this.value);
+  /*  //   alert(this.value);
     console.log("iiiiiiinput:"+ this.id);
    // this.parentNode.append("<img src='Ripple.svg/>'");
 
@@ -110,7 +159,7 @@ setInputBehavior(){
     var id = this.id;
     var fatherID = this.parentNode.parentNode.parentNode;
 
-
+/*
    // if ( $("#"+fatherID).children(".loading").length ) {}else{
        if (typing ) {
 
@@ -120,7 +169,7 @@ setInputBehavior(){
     typing=true;
     //  alert( fatherID.id);
     //  updateTyping(fatherID.id,  $(this).text());
-    updateTyping(fatherID.id, $(this).html());
+    updateTyping(fatherID.id, $(this).html());*/
 });
 }
 }

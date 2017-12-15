@@ -2,7 +2,7 @@
 
 
 
-  <div class ="head" [style.left.px] = "_topLeft.left"  [style.top.px] = "_topLeft.top" ><div class ="spec"> 
+  <div class ="head" (mouseup)="mouseUp($event)"  [style.left.px] = "_topLeft.left"  [style.top.px] = "_topLeft.top" ><div class ="spec"> 
       <img (click)="addSticky($event)" src="../assets/add.png" alt="Mountain View" style="width:12px;height:12px;
       position: relative;bottom:6px;right:5px"> 
       <img  (click)="deleteSticky()" src="../assets/close b.png"  
@@ -10,8 +10,11 @@
       <div class ="sticker2" [style.backgroundColor]="_StickyColorr" > 
       <p class="paragraphClass"   [innerHTML]="liveText" (input)="textChanged($event)" contenteditable="true"></p>
       </div></div>
-      {{pText}}  
-  
+    
+
+      <div *ngIf="auth.user | async as user">
+              <h3> hi {{user.displayName}} </h3>
+              </div>
       <!-- style="background-color:#6596F7"  
         
         (input) = "innerHTML = $event.target.value"

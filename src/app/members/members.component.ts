@@ -26,7 +26,8 @@ export class MembersComponent implements OnInit {
      color : string;
   
      constructor(private _cfr: ComponentFactoryResolver ,
-     private auth :AuthService ) { }
+     public auth :AuthService
+     ) { }
 
 
      ngOnInit(){ }
