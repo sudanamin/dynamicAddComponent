@@ -25,7 +25,10 @@ export class MembersComponent implements OnInit {
   
      color : string;
   
-     constructor(private _cfr: ComponentFactoryResolver ,private auth :AuthService ) { }
+     constructor(private _cfr: ComponentFactoryResolver ,
+     private auth :AuthService ) { }
+
+
      ngOnInit(){ }
   
      setColor(event){
@@ -53,7 +56,7 @@ export class MembersComponent implements OnInit {
          // this.createSticky(this.StickyColor) ;
          },
          revert: true,
-         opacity: 0.5,
+         opacity: 0.7,
          revertDuration: 330,
          //    stack: ".head",
          distance: 0,

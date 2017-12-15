@@ -1,6 +1,10 @@
-import { Component, OnInit ,ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Component, OnInit ,ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
 import * as elementResizeDetectorMaker from '.../../element-resize-detector';
 
+// firebase firestore
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AuthService } from '../auth.service';
+//
 declare var $: any;
 @Component({
   selector: 'app-exp',
@@ -13,8 +17,14 @@ export class ExpComponent {
   _StickyColorr: string;
   _topLeft: any;
   _container: ViewContainerRef;
+  pText:string ;
+   liveText:string = "li";
 
-  constructor(private _cfr: ComponentFactoryResolver ) { }
+  constructor(private _cfr: ComponentFactoryResolver,
+              private afs: AngularFirestore,
+              private auth :AuthService 
+  
+             ) { }
 
 
   deleteSticky() {
@@ -24,13 +34,25 @@ export class ExpComponent {
     alert('Saved Successfully!');
   }
 
+  setss(event){
+     //  this.ss = event.target.innerHTML;
+  }
+ 
+
   ngOnInit() {
-    console.log("h i from ngonit ")
+    console.log("h i from ngonit ");
+    this.liveText = "abcd";
+  }
+
+  textChanged(event){
+    this.pText=event.target.innerHTML;
   }
 
   ngAfterViewInit() {
     console.log(`style top  :  ${this._topLeft.top}`);
     console.log(`style left  :  ${this._topLeft.left}`);
+
+   
     $(".head").draggable({
       start: (event, ui) => {
 
@@ -40,7 +62,7 @@ export class ExpComponent {
         //     this.stickyCompo  = "<p>aaaaaaaaaaaa</p>";
 
       },
-      opacity: 0.5,
+      opacity: 0.3,
       handle: ".spec",
       stack: ".head",
       distance: 0
@@ -74,5 +96,31 @@ export class ExpComponent {
     expComponent.instance._container = this._container;
     
 
+}
+
+setInputBehavior(){
+
+  $('.paragraphClass').on('input', function() {
+    //   alert(this.value);
+    console.log("iiiiiiinput:"+ this.id);
+   // this.parentNode.append("<img src='Ripple.svg/>'");
+
+    // var values = document.getElementById('#parag'+26).id;
+    //  var values =  this.getAttribute('data-value');
+    var id = this.id;
+    var fatherID = this.parentNode.parentNode.parentNode;
+
+
+   // if ( $("#"+fatherID).children(".loading").length ) {}else{
+       if (typing ) {
+
+       } else{
+           $("#"+fatherID.id).append("<img class ='loading' src='Cube.svg'/>");
+    }
+    typing=true;
+    //  alert( fatherID.id);
+    //  updateTyping(fatherID.id,  $(this).text());
+    updateTyping(fatherID.id, $(this).html());
+});
 }
 }

@@ -87,6 +87,7 @@ border:none;
     /*  resize: both;*/
     color: black;
     outline: none;
+    direction: ltr;
     /* overflow: hidden;*/
 /*width: inherit;*/
     /*height: auto;*/

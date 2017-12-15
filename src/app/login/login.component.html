@@ -1,5 +1,6 @@
+<div *ngIf="!auth.user;then content else other_content">here is ignored</div>
 
-
+<ng-template #content>
 <div class="form-container">
   <!-- <img src="assets/images/lock.svg" id="lock">   -->
  
@@ -18,4 +19,6 @@
  
    <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
  </div>
- 
+</ng-template>
+
+<ng-template #other_content> Loading...</ng-template>
