@@ -45,7 +45,8 @@ var firebaseConfig = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    routes
+    routes,
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [ AuthGuard,AuthService ],
   bootstrap: [AppComponent],

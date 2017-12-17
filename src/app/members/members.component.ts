@@ -32,11 +32,11 @@ export class MembersComponent implements OnInit {
 
      ngOnInit(){ }
   
-     setColor(event){
-      console.log("click event occur");
-      console.log(this.color);
+    /* setColor(event){
+     // console.log("click event occur");
+    //  console.log(this.color);
       
-     }
+     }*/
      mouseUp(event){
       this.color = event.target.style.backgroundColor;
       this.topLeft = {
@@ -46,7 +46,7 @@ export class MembersComponent implements OnInit {
   
        this.addComponent() ; 
   
-       console.log("mouse up up up ");
+    //   console.log("mouse up up up ");
       }
      ngAfterViewInit() {
        $(".sticker").draggable({
