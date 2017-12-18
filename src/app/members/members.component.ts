@@ -9,6 +9,8 @@ import {
          
          import { ExpComponent } from '../exp-component/exp-component.component';
 import { AuthService } from '../auth.service';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 
 
@@ -18,6 +20,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./members.component.css']
 })
 export class MembersComponent implements OnInit {
+  _userID: string;
   topLeft: any;
   
     @ViewChild('parent', { read: ViewContainerRef })
@@ -26,8 +29,21 @@ export class MembersComponent implements OnInit {
      color : string;
   
      constructor(private _cfr: ComponentFactoryResolver ,
-     public auth :AuthService
-     ) { }
+     public auth :AuthService , 
+     private afs: AngularFirestore,
+     ) { 
+
+          this.auth.user
+          .subscribe(user => {
+             if (user) {
+               this._userID = user.uid;
+              }
+          });
+
+
+         }
+              
+
 
 
      ngOnInit(){ }
@@ -63,7 +79,20 @@ export class MembersComponent implements OnInit {
          distance: 0,
          // appentTo :
        });
+
+       const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this._userID}/userData/`);
+       const collection$: Observable<any> = collection.valueChanges();
+       
+       
+       
+                   collection$.subscribe(data => {
+                     console.log("how ar e you :" + data);
+                     
+                   });
+       
       }
+
+      
   
     addComponent(){    
         var comp = this._cfr.resolveComponentFactory(ExpComponent);

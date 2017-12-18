@@ -23,13 +23,14 @@ interface Sticky {
   styleUrls: ['./exp-component.component.css']
 })
 export class ExpComponent {
+  _stickyID: any;
   _ref: any;
   _top: string = "300";
   _StickyColorr: string;
   _topLeft: any;
   _container: ViewContainerRef;
-  pText: string;
-  liveText: string ="" ;
+  pText: string=" ";
+  liveText: string = "";
   userid: string;
 
 
@@ -44,36 +45,61 @@ export class ExpComponent {
           console.log("this.userid " + this.userid);
 
           // const collection: AngularFirestoreCollection<Sticky> = afs.collection('sticky');
-          const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/sticky`);
-          //this.liveText = this.afs.collection(`users/${this.userid}/userData/sticky/sdata`).valueChanges;
-          
-          const collection$: Observable<Sticky> = collection.valueChanges();
 
-        
-    
-          collection$.subscribe(data => {
-            console.log("data isssssss :" + data.sdata);
-            if(!this.liveText)
-            this.liveText = data.sdata;
-           
 
-           // $(".paragraphClass").append("hi");
-          //  $('.paragraphClass').focus().val($('#search').val());
-            
-          });
 
+          //if it was created before 
+          if (this._stickyID) {       
+            const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+            //this.liveText = this.afs.collection(`users/${this.userid}/userData/sticky/sdata`).valueChanges;
+
+            const collection$: Observable<Sticky> = collection.valueChanges();
+
+
+
+            collection$.subscribe(data => {
+              console.log("data isssssss :" + data.sdata);
+              if (!this.liveText){       //to bring data from firestore once
+                this.liveText = data.sdata;
+                this._topLeft.top = data.top;
+                this._topLeft.left = data.left;
+               // this._stickyID = data.
+              }
+            });
+          }
+
+          // its new sticky
+          else {
+            const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this.userid}/userData`);
+           // const collection$: Observable<Sticky> = collection.add
+            collection.add  ({
+                "sdata": this.pText,
+                "top": this._topLeft.top,
+                "left": this._topLeft.left
+              }
+              )
+              .then( (docRef) =>{
+                console.log(" created successfully ! id is :"+docRef.id);
+                this._stickyID = docRef.id;
+              })
+              .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+
+          }
 
         }
       });
 
-
-
-
   }
-  
+
 
   deleteSticky() {
     this._ref.destroy();
+    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+    collection.delete();
+    
+
   }
   save() {
     alert('Saved Successfully!');
@@ -86,7 +112,7 @@ export class ExpComponent {
 
   ngOnInit() {
     // console.log("h i from ngonit ");
-   // this.liveText = "abcd";
+    // this.liveText = "abcd";
   }
 
   mouseUp(event) {
@@ -98,7 +124,7 @@ export class ExpComponent {
       top: event.target.getBoundingClientRect().top + window.scrollX,
     }
 
-    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/sticky`);
+    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
     collection.update({
       "top": this._topLeft.top,
       "left": this._topLeft.left
@@ -112,7 +138,7 @@ export class ExpComponent {
 
   textChanged(event) {
     this.pText = event.target.innerHTML;
-    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/sticky`);
+    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
 
 
 
