@@ -23,6 +23,7 @@ interface Sticky {
   styleUrls: ['./exp-component.component.css']
 })
 export class ExpComponent {
+  LastTypingTime: number;
   _stickyID: any;
   _ref: any;
   _top: string = "300";
@@ -183,6 +184,19 @@ export class ExpComponent {
       console.log("Size: " + width + "x" + height + "element id is ");
     })
   }
+  updateSizechange(){
+  this.LastTypingTime = (new Date()).getTime();
+  setTimeout(function () {
+      var typingTimer = (new Date()).getTime();
+      var timeDiff = typingTimer - this.LastTypingTime;
+
+      if (timeDiff >= this.TYPING_TIMER_LENGTH ) {
+          this.lastTypingTime = (new Date()).getTime();
+          ///////////////////
+         }
+  },2000)
+}
+
 
   addSticky(event) {
     var comp = this._cfr.resolveComponentFactory(ExpComponent);
