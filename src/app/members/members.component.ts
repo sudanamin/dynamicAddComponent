@@ -37,6 +37,41 @@ export class MembersComponent implements OnInit {
           .subscribe(user => {
              if (user) {
                this._userID = user.uid;
+               const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this._userID}/userData/`);
+               console.log("user is :"+ this._userID);
+             /*  const collection$: Observable<any> = collection.valueChanges();
+              
+               
+               
+                           collection$.subscribe(data => {
+                             console.log("how ar e you :" + data);
+                             
+                           });*/
+                           //this.afs.collection("userData").get()
+                           collection.ref.get()
+                           .then( (querySnapshot)=> {
+                             var ids:any[];
+                            querySnapshot.forEach((doc)=> {
+                              console.log( " wlecome to world ", doc.data().top);
+                              
+    
+                              this.topLeft = {
+                                left: doc.data().left,
+                                top: doc.data().top
+                              }
+                            //    this.topLeft.left = doc.data().left;
+                               this.addComponent(doc.id);
+                            });
+                         /*   ids.forEach((id)=>{
+                              this.topLeft.left = id.data().left;
+                              console.log( " wlecome to world ", id.data().top);
+
+                              // this.addComponent(doc.id);
+
+                            });*/
+
+                        });
+                          
               }
           });
 
@@ -59,8 +94,8 @@ export class MembersComponent implements OnInit {
         left: event.target.getBoundingClientRect().left + window.scrollX,
         top: event.target.getBoundingClientRect().top + window.scrollX,
       }
-  
-       this.addComponent() ; 
+      this.addComponent(null) ; 
+      
   
     //   console.log("mouse up up up ");
       }
@@ -80,21 +115,13 @@ export class MembersComponent implements OnInit {
          // appentTo :
        });
 
-       const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this._userID}/userData/`);
-       const collection$: Observable<any> = collection.valueChanges();
        
-       
-       
-                   collection$.subscribe(data => {
-                     console.log("how ar e you :" + data);
-                     
-                   });
        
       }
 
       
   
-    addComponent(){    
+    addComponent(stickyID){    
         var comp = this._cfr.resolveComponentFactory(ExpComponent);
         var expComponent = this.container.createComponent(comp);
       //  this.appRef.attachView(expComponent.hostView);
@@ -102,6 +129,7 @@ export class MembersComponent implements OnInit {
         expComponent.instance._StickyColorr = this.color;
         expComponent.instance._topLeft = this.topLeft;
         expComponent.instance._container = this.container;
+        expComponent.instance._stickyID = stickyID;
         
   
     }
