@@ -21,7 +21,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MembersComponent implements OnInit {
   _userID: string;
-  topLeft: any;
+  topLeft: any= {
+    "left": "5",
+    "top": "5"
+  };
   
     @ViewChild('parent', { read: ViewContainerRef })
      container: ViewContainerRef;
@@ -55,10 +58,10 @@ export class MembersComponent implements OnInit {
                               console.log( " wlecome to world ", doc.data().top);
                               
     
-                              this.topLeft = {
+                            /*  this.topLeft = {
                                 left: doc.data().left,
                                 top: doc.data().top
-                              }
+                              }*/
                             //    this.topLeft.left = doc.data().left;
                                this.addComponent(doc.id);
                             });

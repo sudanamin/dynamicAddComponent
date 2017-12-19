@@ -14,8 +14,9 @@ interface Sticky {
   sdata: string;
   top: string;
   left?: string;
-  /*x?: string;
-  y?: string;*/
+  Scolor: string;
+  width?: number;
+  height?: number;
 }
 @Component({
   selector: 'app-exp',
@@ -24,21 +25,25 @@ interface Sticky {
 })
 export class ExpComponent {
   LastTypingTime: number;
+  TYPING_TIMER_LENGTH:number = 2000;
   _stickyID: any;
   _ref: any;
   _top: string = "300";
   _StickyColorr: string;
-  _topLeft: any;
+  _topLeft: any ;
   _container: ViewContainerRef;
   pText: string=" ";
   liveText: string = "";
   userid: string;
+  _width: number = 192 ;
+  _height: number = 150;
+
 
 
   constructor(private _cfr: ComponentFactoryResolver,
     private afs: AngularFirestore,
     private auth: AuthService) {
-
+     
     this.auth.user
       .subscribe(user => {
         if (user) {
@@ -59,11 +64,18 @@ export class ExpComponent {
 
 
             collection$.subscribe(data => {
-              console.log("data isssssss :" + data.sdata);
+              
               if (!this.liveText){       //to bring data from firestore once
+                console.log("data isssssss :" + data.sdata);
                 this.liveText = data.sdata;
-                this._topLeft.top = data.top;
-                this._topLeft.left = data.left;
+                this._topLeft = {
+                  left: data.left,
+                  top: data.top
+                }
+                this._StickyColorr = data.Scolor;
+                this._width = data.width;
+                this._height = data.height;
+            
                // this._stickyID = data.
               }
             });
@@ -76,7 +88,10 @@ export class ExpComponent {
             collection.add  ({
                 "sdata": this.pText,
                 "top": this._topLeft.top,
-                "left": this._topLeft.left
+                "left": this._topLeft.left,
+                "Scolor": this._StickyColorr,
+                "width": this._width,
+                "height": this._height
               }
               )
               .then( (docRef) =>{
@@ -97,8 +112,8 @@ export class ExpComponent {
 
   deleteSticky() {
     this._ref.destroy();
-    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
-    collection.delete();
+    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+    stickyRef.delete();
     
 
   }
@@ -119,14 +134,14 @@ export class ExpComponent {
   mouseUp(event) {
     // this.color = event.target.style.backgroundColor;
     console.log("before set ! top:" + this._topLeft.top + " left " + this._topLeft.left);
-
+    console.log("this id is : "+this._stickyID);
     this._topLeft = {
       left: event.target.getBoundingClientRect().left + window.scrollX,
       top: event.target.getBoundingClientRect().top + window.scrollX,
     }
 
-    const collection: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
-    collection.update({
+    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+    stickyRef.update({
       "top": this._topLeft.top,
       "left": this._topLeft.left
     }
@@ -178,22 +193,59 @@ export class ExpComponent {
       strategy: 'scroll'
     });
 
-    _elementResizeDetector.listenTo(document.getElementsByClassName('sticker2'), function (element) {
-      var width = element.offsetWidth;
-      var height = element.offsetHeight;
-      console.log("Size: " + width + "x" + height + "element id is ");
+    _elementResizeDetector.listenTo(document.getElementById(this._stickyID),  (element)=> {
+     //  width :number = 200;
+    //  var height = 200;
+
+      // width  = element.offsetWidth;
+    //   height = element.offsetHeight;
+
+
+  //    console.log("Size: " + width + "x" + height + "element id is ");
+      this.updateSizechange(element.offsetWidth-8,element.offsetHeight-8);
+   /*  if(this.userid){
+      const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+      console.log("sticky id is  : " + this._stickyID);
+    //  console.log("width : "+width +" height: "+height);
+      
+      stickyRef.update({
+        "width": width,
+        "height": height
+      }
+      ).then(() => {
+        console.log("size updated!");
+      });}*/
     })
   }
-  updateSizechange(){
+  updateSizechange(width,height){
   this.LastTypingTime = (new Date()).getTime();
-  setTimeout(function () {
+ // console.log("last typing is : " + this.LastTypingTime);
+  
+  setTimeout( ()=> {
       var typingTimer = (new Date()).getTime();
       var timeDiff = typingTimer - this.LastTypingTime;
-
+   
+      
       if (timeDiff >= this.TYPING_TIMER_LENGTH ) {
-          this.lastTypingTime = (new Date()).getTime();
+        console.log("timeDiff : " + timeDiff);
+          this.LastTypingTime = (new Date()).getTime();
+          if(this.userid){
+          const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+          console.log("sticky id  is : " + this._stickyID);
+          console.log("width : "+width +" height: "+height);
+          
+          stickyRef.update({
+            width: width,
+            height: height
+          }
+          )
+            .then(function () {
+              console.log("size successfully updated! width :"+width);
+            });
+          
           ///////////////////
          }
+        }
   },2000)
 }
 
