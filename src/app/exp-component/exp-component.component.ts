@@ -35,8 +35,8 @@ export class ExpComponent {
   pText: string=" ";
   liveText: string = "";
   userid: string;
-  _width: number = 192 ;
-  _height: number = 150;
+  _width: number ;
+  _height: number ;
 
 
 
@@ -90,8 +90,8 @@ export class ExpComponent {
                 "top": this._topLeft.top,
                 "left": this._topLeft.left,
                 "Scolor": this._StickyColorr,
-                "width": this._width,
-                "height": this._height
+               // "width": this._width,
+              //  "height": this._height
               }
               )
               .then( (docRef) =>{
@@ -167,6 +167,11 @@ export class ExpComponent {
       });
 
 
+  }
+
+  increaseZindex(event){
+    console.log("div is ssssssclicked" + event.target.innerHTML);
+   // event.target.innerHTML = "hello world ";
   }
 
   ngAfterViewInit() {
