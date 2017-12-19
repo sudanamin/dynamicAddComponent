@@ -209,28 +209,13 @@ export class ExpComponent {
     });
 
     _elementResizeDetector.listenTo(document.getElementById(this._stickyID),  (element)=> {
-     //  width :number = 200;
-    //  var height = 200;
 
-      // width  = element.offsetWidth;
-    //   height = element.offsetHeight;
-
-
-  //    console.log("Size: " + width + "x" + height + "element id is ");
+     //   if(element.offsetWidth-8 >200){
       this.updateSizechange(element.offsetWidth-8,element.offsetHeight-8);
-   /*  if(this.userid){
-      const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
-      console.log("sticky id is  : " + this._stickyID);
-    //  console.log("width : "+width +" height: "+height);
-      
-      stickyRef.update({
-        "width": width,
-        "height": height
-      }
-      ).then(() => {
-        console.log("size updated!");
-      });}*/
-    })
+
+      //  }
+    });
+
   }
   updateSizechange(width,height){
   this.LastTypingTime = (new Date()).getTime();

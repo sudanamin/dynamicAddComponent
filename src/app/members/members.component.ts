@@ -55,23 +55,10 @@ export class MembersComponent implements OnInit {
                            .then( (querySnapshot)=> {
                              var ids:any[];
                             querySnapshot.forEach((doc)=> {
-                              console.log( " wlecome to world ", doc.data().top);
-                              
-    
-                            /*  this.topLeft = {
-                                left: doc.data().left,
-                                top: doc.data().top
-                              }*/
-                            //    this.topLeft.left = doc.data().left;
+                             
                                this.addComponent(doc.id);
                             });
-                         /*   ids.forEach((id)=>{
-                              this.topLeft.left = id.data().left;
-                              console.log( " wlecome to world ", id.data().top);
-
-                              // this.addComponent(doc.id);
-
-                            });*/
+                       
 
                         });
                           
