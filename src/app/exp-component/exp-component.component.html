@@ -2,7 +2,7 @@
 
 
 
-  <div class ="head"  (click)="increaseZindex($event)"  [style.left.px]  = "_topLeft.left"  [style.top.px] = "_topLeft.top" ><div class ="spec"(mouseup)="mouseUp($event)"> 
+  <div class ="head"  (click)="increaseZindex($event)" [style.zIndex]="_zindex"    [style.left.px]  = "_topLeft.left"  [style.top.px] = "_topLeft.top" ><div class ="spec"(mouseup)="mouseUp($event)"> 
       <img (click)="addSticky($event)" src="../assets/add.png" alt="Mountain View" style="width:12px;height:12px;
       position: relative;bottom:6px;right:5px"> 
       <img  (click)="deleteSticky()" src="../assets/close b.png"  

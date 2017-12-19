@@ -38,6 +38,9 @@ export class ExpComponent {
   _width: number ;
   _height: number ;
 
+   _zindex :number = 10;
+  static szindex =10;
+
 
 
   constructor(private _cfr: ComponentFactoryResolver,
@@ -169,8 +172,15 @@ export class ExpComponent {
 
   }
 
+  get getZindex() {
+    return ExpComponent.szindex;
+  }
+
   increaseZindex(event){
     console.log("div is ssssssclicked" + event.target.innerHTML);
+
+      ExpComponent.szindex = ExpComponent.szindex +10;
+      this._zindex = ExpComponent.szindex;
    // event.target.innerHTML = "hello world ";
   }
 
