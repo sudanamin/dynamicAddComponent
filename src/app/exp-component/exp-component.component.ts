@@ -70,7 +70,7 @@ export class ExpComponent {
               
               if (!this.liveText){       //to bring data from firestore once
                 console.log("data isssssss :" + data.sdata);
-                this.liveText = data.sdata;
+                this.liveText = data.sdata;}
                 this._topLeft = {
                   left: data.left,
                   top: data.top
@@ -80,7 +80,7 @@ export class ExpComponent {
                 this._height = data.height;
             
                // this._stickyID = data.
-              }
+            //clode if  }
             });
           }
 
