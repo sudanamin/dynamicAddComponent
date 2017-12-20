@@ -210,10 +210,10 @@ export class ExpComponent {
 
     _elementResizeDetector.listenTo(document.getElementById(this._stickyID),  (element)=> {
 
-     //   if(element.offsetWidth-8 >200){
+        if(!(element.offsetWidth-8 == 192 && element.offsetHeight-8 == 129)){
       this.updateSizechange(element.offsetWidth-8,element.offsetHeight-8);
 
-      //  }
+        }
     });
 
   }
