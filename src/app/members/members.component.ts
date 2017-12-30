@@ -53,7 +53,7 @@ export class MembersComponent implements OnInit {
                            //this.afs.collection("userData").get()
                            collection.ref.get()
                            .then( (querySnapshot)=> {
-                             var ids:any[];
+                             //var ids:any[];
                             querySnapshot.forEach((doc)=> {
                              
                                this.addComponent(doc.id);
