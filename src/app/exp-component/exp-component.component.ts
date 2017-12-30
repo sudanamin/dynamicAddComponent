@@ -181,22 +181,22 @@ export class ExpComponent {
           console.log("hi firday");
             this.loadingImg.remove();
             this.typing = false;
-               
+            const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
+
+
+
+            stickyRef.update({
+              "sdata": this.pText
+            }
+            )
+              .then(function () {
+                console.log("Document successfully updated!");
+              });
 
         }
        // 
     }, this.TYPING_TIMER_LENGTH );
-    const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
-
-
-
-    stickyRef.update({
-      "sdata": this.pText
-    }
-    )
-      .then(function () {
-        console.log("Document successfully updated!");
-      });
+    
 
 
   }
@@ -206,7 +206,7 @@ export class ExpComponent {
   }
 
   increaseZindex(event){
-    console.log("div is ssssssclicked" + event.target.innerHTML);
+ //   console.log("div is ssssssclicked" + event.target.innerHTML);
 
       ExpComponent.szindex = ExpComponent.szindex +10;
       this._zindex = ExpComponent.szindex;
@@ -241,6 +241,7 @@ export class ExpComponent {
 
         if(!(element.offsetWidth-8 == 192 && element.offsetHeight-8 == 129)){
       this.updateSizechange(element.offsetWidth-8,element.offsetHeight-8);
+     // console.log("hi from sunday:" +element.offsetWidth);
 
         }
     });
@@ -255,17 +256,17 @@ export class ExpComponent {
       var timeDiff = typingTimer - this.lastSizeChange;
    
       
-      if (timeDiff >= this.TYPING_TIMER_LENGTH ) {
+      if (timeDiff >= 2000 ) {
         console.log("timeDiff : " + timeDiff);
           this.lastSizeChange = (new Date()).getTime();
           if(this.userid){
           const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
-          console.log("sticky id  is : " + this._stickyID);
-          console.log("width : "+width +" height: "+height);
+       //   console.log("sticky id  is : " + this._stickyID);
+       //   console.log("width : "+width +" height: "+height);
           
           stickyRef.update({
-            width: width,
-            height: height
+            'width': width,
+            'height': height
           }
           )
             .then(function () {
