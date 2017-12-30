@@ -25,7 +25,9 @@ interface Sticky {
 })
 export class ExpComponent {
   LastTypingTime: number;
-  TYPING_TIMER_LENGTH:number = 2000;
+ lastSizeChange: number;
+  TYPING_TIMER_LENGTH:number = 700;
+  typing:boolean = false;
   _stickyID: any;
   _ref: any;
   _top: string = "300";
@@ -37,6 +39,8 @@ export class ExpComponent {
   userid: string;
   _width: number ;
   _height: number ;
+   loadingImg :any = document.createElement("img");
+
 
    _zindex :number = 10;
   static szindex =10;
@@ -157,6 +161,31 @@ export class ExpComponent {
 
   textChanged(event) {
     this.pText = event.target.innerHTML;
+    //var loadingImg = document.createElement("img");
+    //this.typing = true;
+    this.loadingImg.src = "../assets/Cube.svg";
+    this.loadingImg.style.width = "25px";
+    this.loadingImg.style.height = "25px";
+
+    if(!this.typing)
+    event.target.parentNode.parentNode.append(this.loadingImg);
+    this.typing = true;
+    this.LastTypingTime = (new Date()).getTime();
+    setTimeout( ()=> {
+      
+        var typingTimer = (new Date()).getTime();
+        var timeDiff = typingTimer - this.LastTypingTime;
+        console.log(typingTimer +"  last typing"+ this.LastTypingTime )
+        if (timeDiff >= this.TYPING_TIMER_LENGTH && this.typing) {
+            this.LastTypingTime = (new Date()).getTime();
+          console.log("hi firday");
+            this.loadingImg.remove();
+            this.typing = false;
+               
+
+        }
+       // 
+    }, this.TYPING_TIMER_LENGTH );
     const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
 
 
@@ -218,17 +247,17 @@ export class ExpComponent {
 
   }
   updateSizechange(width,height){
-  this.LastTypingTime = (new Date()).getTime();
+  this.lastSizeChange = (new Date()).getTime();
  // console.log("last typing is : " + this.LastTypingTime);
   
   setTimeout( ()=> {
       var typingTimer = (new Date()).getTime();
-      var timeDiff = typingTimer - this.LastTypingTime;
+      var timeDiff = typingTimer - this.lastSizeChange;
    
       
       if (timeDiff >= this.TYPING_TIMER_LENGTH ) {
         console.log("timeDiff : " + timeDiff);
-          this.LastTypingTime = (new Date()).getTime();
+          this.lastSizeChange = (new Date()).getTime();
           if(this.userid){
           const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
           console.log("sticky id  is : " + this._stickyID);
