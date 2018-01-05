@@ -144,7 +144,7 @@ export class ExpComponent {
     console.log("this id is : "+this._stickyID);
     this._topLeft = {
       left: event.target.getBoundingClientRect().left + window.scrollX,
-      top: event.target.getBoundingClientRect().top + window.scrollX,
+      top: event.target.getBoundingClientRect().top + window.scrollY,
     }
 
     const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
