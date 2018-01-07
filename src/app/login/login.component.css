@@ -1,43 +1,18 @@
-#lock {
-    width:40%;
-    margin: 1.5em auto 4em auto;
-    display:block;
-}
 
-#fb {
-    background:#3B5998 url('assets/images/facebook.svg') no-repeat 14px 6px;
-    background-size: 47px;
-    color:#fff;
-}
+/* 
+.backgroud {
+   background-image: url("./assets/stickies-background.jpg");
+  /* background-color: blue;
+ 
+  background-repeat: no-repeat;
+ 
+  }
+ */
 
-#google {
-    border: 1px solid #95989A;
- /*   background: #fff  url('assets/images/google.svg') no-repeat 25px;*/
-    background-size: 25px;
-}
-
-#email {
-  /*  background: #ECECEC  url('assets/images/email.svg') no-repeat 25px;*/
-    background-size: 25px;
-}
-
-@media (max-width: 600px) {
-    #page {
-        padding:1em;
-    }
-    #toolbar {
-        width:90%;
-        margin-left: -45%;
-    }
-    #fb {
-        background:#3B5998;
-    }
-
-    #google {
-        background: #fff;
-    }
-
-    #email {
-        background: #ECECEC;
-    }
-}
+ html { 
+    background: url(./assets/stickies-background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }

@@ -1,7 +1,8 @@
-<div *ngIf="auth.user | async; then loading else login">here is ignored</div>
+
+<div  *ngIf="auth.user | async; then loading else login">here is ignored</div>
 
 <ng-template #login>
-<div class="form-container">
+<div class="form-container ">
   <!-- <img src="assets/images/lock.svg" id="lock">   -->
  
      <span class="error" *ngIf="error">{{ error }}</span>

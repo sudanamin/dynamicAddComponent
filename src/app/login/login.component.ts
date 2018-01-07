@@ -27,4 +27,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+  //  document.querySelector('body').classList.add('blue');
+    document.body.style.backgroundImage = "url(../../assets/stickies-background.jpg)";
+    document.body.style.backgroundRepeat = "no-repeat";
+ //   document.body.style.backgroundPosition = "center"; 
+
+}
+ngOnDestroy(): void {
+    document.body.style.backgroundImage = "";
+}
+
 }
