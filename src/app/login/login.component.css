@@ -100,10 +100,10 @@
 {
 	position: absolute;
 	top: 50%;
-	left: 80%;
+	left: 85%;
 	transform: translate(-50%,-50%);
 	width: 350px;
-	/* height: 750px; */
+	height: 80%; 
 	padding: 80px 40px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
