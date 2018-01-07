@@ -59,13 +59,13 @@
     color:#fff;
 }
 
-.google {
- /*   border: 1px solid #95989A;
+/*.google {
+    border: 1px solid #95989A;
     background: #fff  url('assets/images/google.svg') no-repeat 25px;
-	 background-size: 25px;*/
+	 background-size: 25px;
 	 
 	 background-color: #dd4b39;
-	 background-image: url("assets/images/google.svg"); }
+	 background-image: url("assets/images/google.svg"); }*/
 	
 
 
@@ -89,7 +89,8 @@
 		background-color: #dd4b39;
 		background-image: url("assets/images/google.svg");
 		border-radius: 20px;
-	 }
+		width: 100%;
+	}
 		.btn-google:hover {
 		  background-color: #e47365; }
 		.btn-google:active {
@@ -105,6 +106,7 @@
 	width: 350px;
 	/*/height: 80%; */
 	padding: 50px 30px;
+	margin-top: 10px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
 }
@@ -163,7 +165,7 @@ h2
 {
 	border: none;
 	outline: none;
-	height: 40px;
+	height: 2em;
 	color: #fff;
 	font-size: 16px;
 	background: #ff267e;
