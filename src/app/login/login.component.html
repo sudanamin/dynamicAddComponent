@@ -3,9 +3,10 @@
 
 <ng-template #login>
 <div class="form-container ">
+<!-- <div class="form-container">
   <!-- <img src="assets/images/lock.svg" id="lock">   -->
  
-     <span class="error" *ngIf="error">{{ error }}</span>
+     <!-- <span class="error" *ngIf="error">{{ error }}</span>
  
    <button (click)="auth.facebookLogin()" id="fb">Login With Facebook</button><br>
    <br>
@@ -19,7 +20,34 @@
    <br>
  
    <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
- </div>
+ </div> -->
+
+
+ <div class="loginBox">
+  <img src="assets/images/user.png" class="user">
+  <h2>Log In Here</h2>
+  <form>
+
+      <button (click)="auth.facebookLogin()" id="fb">Login With Facebook</button><br>
+      <br>
+      <br>
+      <button (click)="auth.googleLogin()" id="google" class="btn-si btn-google">Login With Google</button>
+     <!--  <button >Sign in with Google</button> -->
+      <br>
+      <br>
+    
+      
+    <p>Email</p>
+    <input type="text" name="" placeholder="Enter Email">
+    <p>Password</p>
+    <input type="password" name="" placeholder="••••••">
+    <input type="submit" name="" value="Sign In">
+    <a href="#">Forget Password</a>
+    <br>
+    <br>
+    <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
+  </form>
+</div>
 </ng-template>
 
 <ng-template #loading> Loading...</ng-template>
