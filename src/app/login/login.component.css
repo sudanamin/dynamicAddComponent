@@ -103,8 +103,8 @@
 	left: 85%;
 	transform: translate(-50%,-50%);
 	width: 350px;
-	height: 80%; 
-	padding: 80px 40px;
+	/*/height: 80%; */
+	padding: 50px 30px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
 }
@@ -181,4 +181,5 @@ h2
 	font-size: 14px;
 	font-weight: bold;
 	text-decoration: none;
+	
 }
