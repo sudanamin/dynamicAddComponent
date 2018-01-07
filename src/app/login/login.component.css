@@ -106,12 +106,13 @@
 	width: 350px;
 	/*/height: 80%; */
 	padding: 50px 30px;
-	margin-top: 10px;
+	margin-top: 15px;
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
 }
 .user
 {
+	opacity: 0.9;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
