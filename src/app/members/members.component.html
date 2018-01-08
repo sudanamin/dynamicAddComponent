@@ -1,14 +1,13 @@
 <div #parent></div> 
-
+<div id ='head1'>
 <button (click)="auth.signOut()">Logout</button>
-
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
   <input type="hidden" name="cmd" value="_s-xclick">
   <input type="hidden" name="hosted_button_id" value="ABSPNPD4E8RXY">
   <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
   <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
   </form>
-  
+</div>
 <div id="pag">
         <div id = "aimid"  (mouseup)="mouseUp($event)"   class ="sticker"  style="background-color:#FFFF8A;top:180px;">  </div>
         <div id = "a222"  (mouseup)="mouseUp($event)"  class ="sticker"  style="background-color:#6596F7;top:240px;">  </div>
