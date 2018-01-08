@@ -11,17 +11,78 @@
 }
 
 
-#head1
+#mainTab
 {
-    /* width:100%;
-    height: 10%; */
-    opacity: 0.8;
-    display: inline;
-    background-color: black;
+    position: absolute;
+/* 	top: 50%;
+	left: 85%; */
+	/* transform: translate(-50%,-50%); */
+	width: 100%;
+	/*/height: 80%; */
+   /*  padding: 5px 5px; */
+    margin-top: -8px;
+    margin-left: -8px;
+     padding-top: 10px;
+    padding-left: 8px;
+    padding-bottom: 8px; 
+	box-sizing: border-box;
+    background: rgba(0,0,0,.6);
+    display:inline;
+   
+
   /*   float: left */;
 }
 
+h3 {
+    display:inline;
+    color : white;
+margin-left: 60px;
 
+
+}
+
+#userPhoto{
+    opacity: 0.9;
+	width: 50px;
+    height: 50px;
+    margin-left: 15px;
+	border-radius: 50%;
+	/*  overflow: hidden; */ 
+	 position: absolute; 
+/* 	 top: calc(-100px/2);
+	left: calc(50% - 50px);  */
+}
+
+.logoutButton {
+   float: right;
+     margin-right: 150px; 
+    border: none;
+	outline: none;
+	height: 1.65em;
+	color:#fdfffe;
+	font-size: 15px;
+	background: #e414b0;
+	cursor: pointer;
+    border-radius: 20px;
+    /*  font-family: sans-serif; */
+   
+  
+    font-weight: bold;
+   /*  top : 50%; */
+    width:100px;
+   /*  display:inline; */
+}
+.logoutButton:hover
+{
+	background: #2cc727;
+	color: #000000;
+}
+#donate {
+     position: absolute;
+    right: 0px; 
+     display:inline; 
+
+}
 .head {
 
    width: 200px;

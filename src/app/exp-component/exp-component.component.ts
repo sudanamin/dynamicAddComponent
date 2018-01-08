@@ -166,6 +166,9 @@ export class ExpComponent {
     this.loadingImg.src = "../assets/Cube.svg";
     this.loadingImg.style.width = "25px";
     this.loadingImg.style.height = "25px";
+    this.loadingImg.style.position =  "absolute";
+    this.loadingImg.style.marginTop = "-25px";
+    this.loadingImg.style.zIndex = 1000;
 
     if(!this.typing)
     event.target.parentNode.parentNode.append(this.loadingImg);
@@ -230,7 +233,8 @@ export class ExpComponent {
       opacity: 0.3,
       handle: ".spec",
       stack: ".head",
-      distance: 0
+      distance: 0,
+     /*  containment: "#mainTab" */
     });
 
     let _elementResizeDetector = elementResizeDetectorMaker({
