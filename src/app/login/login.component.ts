@@ -13,7 +13,9 @@ import { AuthService } from '../auth.service';
  // host: {'[@moveIn]': ''}
 })
 export class LoginComponent implements OnInit {
-
+ error:any;
+ email:any;
+ password:any;
   constructor(public auth: AuthService,private router: Router) {
 
      
@@ -38,4 +40,24 @@ ngOnDestroy(): void {
     document.body.style.backgroundImage = "";
 }
 
+
+
+onSubmit(formData) {
+  if(formData.valid) {
+    console.log(formData.value);
+    this.auth.emailLogin(
+       formData.value.email,
+       formData.value.password
+    ).then(
+      (success) => {
+      console.log(success);
+      this.router.navigate(['/members']);
+    }).catch(
+      (err) => {
+      console.log("hi eror:"+err);
+      this.error = err;
+      alert(this.error);
+    })
+  }
+}
 }

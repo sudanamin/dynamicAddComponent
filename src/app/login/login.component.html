@@ -26,7 +26,7 @@
  <div class="loginBox">
   <img src="assets/images/user-login.svg" class="user">
   <h2>Log In Here</h2>
-  <form>
+  <!-- <form> -->
 
       <button (click)="auth.facebookLogin()" id="fb"  class="btn-si btn-facebook">Login With Facebook</button><br>
       <br>
@@ -36,18 +36,22 @@
       <br>
       <br>
       <br>
-      
-      
-    <p>Email</p>
-    <input type="text" name="" placeholder="Enter Email">
+      <p>Email</p>
+      <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+    
+    <!-- <input type="text" name="" placeholder="Enter Email">
     <p>Password</p>
-    <input type="password" name="" placeholder="••••••">
+    <input type="password" name="" placeholder="••••••"> -->
+    <input type="text" placeholder="Email address.." (ngModel)="email" name="email" class="txt" required>
+      <input type="password" placeholder="Password" (ngModel)="password" name="password" class="txt" required>
+
     <input type="submit" name="" value="Sign In">
+  </form>
     <a href="#">Forget Password</a>
     <br>
     <br>
     <a routerLink="/signup" routerLinkActive="active" class="alc">No account? <strong>Create one here</strong></a>
-  </form>
+  
 </div>
 </ng-template>
 
