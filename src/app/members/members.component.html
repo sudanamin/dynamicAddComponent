@@ -7,8 +7,10 @@
 
 <div *ngIf="auth.user | async as user">
    
-    <img id="userPhoto" src="{{user.photoURL}}">
-    &nbsp;&nbsp;<h3>  hi {{user.displayName}} </h3>
+    <img *ngIf="user.photoURL" id="userPhoto" src="{{user.photoURL}}">
+    &nbsp;&nbsp;
+    
+    <h3 *ngIf="user.displayName">  hi {{user.displayName}} </h3>
     <button (click)="auth.signOut()" class="logoutButton">Logout</button>
     <div id="donate">
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
