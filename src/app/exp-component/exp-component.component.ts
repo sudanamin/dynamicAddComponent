@@ -163,7 +163,7 @@ export class ExpComponent {
 
   textChanged(event) {
     this.pText = event.target.innerHTML;
-    this.pText += " <br>";
+    this.pText += " <br><br>";
     /* this.liveText += " <br>"; */
     //var loadingImg = document.createElement("img");
     //this.typing = true;
