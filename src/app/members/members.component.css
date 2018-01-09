@@ -59,9 +59,10 @@ margin-left: 60px;
     border: none;
 	outline: none;
 	height: 1.65em;
-	color:#fdfffe;
-	font-size: 15px;
-	background: #e414b0;
+	
+    font-size: 15px;
+    background: #2cc727;
+	color: #050000;
 	cursor: pointer;
     border-radius: 5px;
     /*  font-family: sans-serif; */
@@ -74,8 +75,8 @@ margin-left: 60px;
 }
 .logoutButton:hover
 {
-	background: #2cc727;
-	color: #000000;
+	color:#fdfffe;
+    background: #14e441;
 }
 #donate {
      position: absolute;
