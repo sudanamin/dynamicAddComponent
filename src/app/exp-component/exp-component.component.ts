@@ -159,8 +159,12 @@ export class ExpComponent {
 
   }
 
+  pasteFunction($event){}
+
   textChanged(event) {
     this.pText = event.target.innerHTML;
+    this.pText += " <br>";
+    /* this.liveText += " <br>"; */
     //var loadingImg = document.createElement("img");
     //this.typing = true;
     this.loadingImg.src = "../assets/Cube.svg";
