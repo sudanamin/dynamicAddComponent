@@ -159,7 +159,11 @@ export class ExpComponent {
 
   }
 
-  pasteFunction($event){}
+  pasteFunction($event){
+
+    this.liveText += " <br><br>";
+    alert("ppppppppppppppppaset");
+  }
 
   textChanged(event) {
     this.pText = event.target.innerHTML;
