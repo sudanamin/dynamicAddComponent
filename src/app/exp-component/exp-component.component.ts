@@ -50,7 +50,9 @@ export class ExpComponent {
   constructor(private _cfr: ComponentFactoryResolver,
     private afs: AngularFirestore,
     private auth: AuthService) {
-     
+
+
+    
     this.auth.user
       .subscribe(user => {
         if (user) {
@@ -135,6 +137,7 @@ export class ExpComponent {
 
   ngOnInit() {
     // console.log("h i from ngonit ");
+   // this.increaseZindex(null); 
     // this.liveText = "abcd";
   }
 
@@ -167,7 +170,7 @@ export class ExpComponent {
 
   textChanged(event) {
     this.pText = event.target.innerHTML;
-    this.pText += " <br><br>";
+   /*  this.pText += " <br><br>"; */
     /* this.liveText += " <br>"; */
     //var loadingImg = document.createElement("img");
     //this.typing = true;
@@ -227,7 +230,7 @@ export class ExpComponent {
   ngAfterViewInit() {
     //  console.log(`style top  :  ${this._topLeft.top}`);
     //  console.log(`style left  :  ${this._topLeft.left}`);
-
+    
 
     $(".head").draggable({
       start: (event, ui) => {
@@ -304,6 +307,8 @@ export class ExpComponent {
       top: event.target.getBoundingClientRect().top + window.scrollX + 35,
     }
     expComponent.instance._topLeft = __topLeft;
+    expComponent.instance._zindex = ExpComponent.szindex +10;
+    
 
 
     expComponent.instance._container = this._container;
