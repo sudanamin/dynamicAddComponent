@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
       ).then(
         (success) => {
         console.log(success);
-        alert("Reset Email has been send to you")
+        alert("Reset Email has been send to your email kindly check your inbox");
         this.router.navigate(['/login']);
       }).catch(
         (err) => {
