@@ -22,10 +22,17 @@ export class SignupComponent implements OnInit {
       ).then(
         (success) => {
         console.log(success);
-        this.router.navigate(['/login'])
-      }).catch(
+       // this.router.navigate(['/login'])
+      }).then(() => {
+        this.auth.emailLogin(formData.value.email,formData.value.password)
+      }).then(
+        () => {
+       // console.log(success);
+        this.router.navigate(['/members']);
+      }).
+      catch(
         (err) => {
-        console.log(err);
+        alert(err);
         this.error = err;
       })
     }
