@@ -162,10 +162,19 @@ export class ExpComponent {
 
   }
 
-  pasteFunction($event){
+  pasteFunction(event){
+ //  this.liveText +="b";
+   //  event.target.appendchild("br");
+   /* var textnode = document.createElement("<br>");  */      // Create a text node
+   // event.target.appendtext("textnode");  
+  /*   var textnode2 = document.createElement("br");         // Create a text node
+    event.target.appendChild(textnode2);  */
+   // alert("ppppppppppppppppaset");
+   var br = document.createElement("br");
+   event.target.appendChild(br);
+   var br1 = document.createElement("br");
+   event.target.appendChild(br1);
 
-    this.liveText += " <br><br>";
-    alert("ppppppppppppppppaset");
   }
 
   textChanged(event) {
