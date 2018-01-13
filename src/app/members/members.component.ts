@@ -21,6 +21,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class MembersComponent implements OnInit {
   _userID: string;
+  loadingImg :any = document.createElement("img");
   topLeft: any= {
     "left": "5",
     "top": "5"
@@ -53,6 +54,7 @@ export class MembersComponent implements OnInit {
                            //this.afs.collection("userData").get()
                            collection.ref.get()
                            .then( (querySnapshot)=> {
+                            this.loadingImg.style.display = "none";
                              //var ids:any[];
                             querySnapshot.forEach((doc)=> {
                              
@@ -90,6 +92,18 @@ export class MembersComponent implements OnInit {
     //   console.log("mouse up up up ");
       }
      ngAfterViewInit() {
+
+
+      this.loadingImg.src = "../assets/Ripple.svg";
+    this.loadingImg.style.width = "250px";
+    this.loadingImg.style.height = "250px";
+    this.loadingImg.style.position =  "fixed";
+    this.loadingImg.style.top = "30%";
+    this.loadingImg.style.left = "30%";
+
+  //  this.loadingImg.style.marginTop = "-25px";
+    this.loadingImg.style.zIndex = 1000;
+    document.getElementById('pag').appendChild(this.loadingImg);
        $(".sticker").draggable({
          start: (event, ui) => {
          //var StickyColor = $(this.).css("background-color");
