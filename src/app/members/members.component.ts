@@ -92,7 +92,8 @@ export class MembersComponent implements OnInit {
     //   console.log("mouse up up up ");
       }
      ngAfterViewInit() {
-
+      document.body.style.height = "2000px";
+    
 
       this.loadingImg.src = "../assets/Ripple.svg";
     this.loadingImg.style.width = "250px";
