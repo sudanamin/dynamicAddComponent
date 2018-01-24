@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class ResetPasswordComponent implements OnInit {
 
   error:any;
+  email:any;
+
   
   constructor(public auth: AuthService,private router: Router) {}
 
