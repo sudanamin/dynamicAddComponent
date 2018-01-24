@@ -136,11 +136,11 @@ export class AuthService {
 
   // Sends email allowing user to reset password
   resetPassword(email: string) {
-    var auth = firebase.auth();
+    //var auth = firebase.auth();
 
-    return auth.sendPasswordResetEmail(email)
+    return this.afAuth.auth.sendPasswordResetEmail(email)
       .then(() => console.log("email sent"))
-      .catch((error) => console.log(error))
+      .catch((error) => console.log("amin nnnn"+error))
   }
 
 
