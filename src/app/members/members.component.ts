@@ -52,7 +52,7 @@ export class MembersComponent implements OnInit {
                              
                            });*/
 
-                           //if you want read time database..
+                           //if you want real time database..
                              //this.afs.collection("userData").get()db.collection("cities").doc("SF")
                              //   .onSnapshot(function(doc) {
                              //   console.log("Current data: ", doc.data());

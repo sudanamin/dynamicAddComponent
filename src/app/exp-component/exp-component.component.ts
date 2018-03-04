@@ -6,7 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
 
-
+import * as fs from 'firebase/firestore';
 //
 declare var $: any;
 
@@ -99,6 +99,7 @@ export class ExpComponent {
                 "top": this._topLeft.top,
                 "left": this._topLeft.left,
                 "Scolor": this._StickyColorr,
+                "timestamp": fs.FieldValue.serverTimestamp()
                // "width": this._width,
               //  "height": this._height
               }
@@ -209,7 +210,8 @@ export class ExpComponent {
 
 
             stickyRef.update({
-              "sdata": this.pText
+              "sdata": this.pText,
+              "timestamp": fs.FieldValue.serverTimestamp()
             }
             )
               .then(function () {
