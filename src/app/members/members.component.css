@@ -34,10 +34,9 @@
 }
 
 h3 {
-   /*  display:inline; */
+     display:inline; 
     color : white;
 margin-left: 60px;
-margin-bottom: 5px;
 
 
 }

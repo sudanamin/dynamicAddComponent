@@ -74,7 +74,7 @@ export class ExpComponent {
 
             collection$.subscribe(data => {
               
-              if (!this.liveText){       //to bring data from firestore once
+              if (!this.liveText){       //to bring data from firestore only once
                 console.log("data isssssss :" + data.sdata);
                 this.liveText = data.sdata;}
                 this._topLeft = {

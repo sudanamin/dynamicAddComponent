@@ -51,7 +51,13 @@ export class MembersComponent implements OnInit {
                              console.log("how ar e you :" + data);
                              
                            });*/
-                           //this.afs.collection("userData").get()
+
+                           //if you want read time database..
+                             //this.afs.collection("userData").get()db.collection("cities").doc("SF")
+                             //   .onSnapshot(function(doc) {
+                             //   console.log("Current data: ", doc.data());
+                             // });
+
                            collection.ref.get()
                            .then( (querySnapshot)=> {
                             this.loadingImg.style.display = "none";
