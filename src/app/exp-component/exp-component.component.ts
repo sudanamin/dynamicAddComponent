@@ -6,7 +6,9 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs/Observable';
 
-import * as fs from 'firebase/firestore';
+import * as firebase from 'firebase';
+
+//import * as fs from 'firebase/firestore';
 //
 declare var $: any;
 
@@ -17,6 +19,7 @@ interface Sticky {
   Scolor: string;
   width?: number;
   height?: number;
+  timestamp : Date;
 }
 @Component({
   selector: 'app-exp',
@@ -44,8 +47,7 @@ export class ExpComponent {
 
    _zindex :number = 10;
   static szindex =10;
-
-
+//private date :Date;
 
   constructor(private _cfr: ComponentFactoryResolver,
     private afs: AngularFirestore,
@@ -84,6 +86,7 @@ export class ExpComponent {
                 this._StickyColorr = data.Scolor;
                 this._width = data.width;
                 this._height = data.height;
+                console.log( "aaaa"+ data.timestamp);
             
                // this._stickyID = data.
             //clode if  }
@@ -94,12 +97,15 @@ export class ExpComponent {
           else {
             const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this.userid}/userData`);
            // const collection$: Observable<Sticky> = collection.add
+         
             collection.add  ({
                 "sdata": this.pText,
                 "top": this._topLeft.top,
                 "left": this._topLeft.left,
                 "Scolor": this._StickyColorr,
-                "timestamp": fs.FieldValue.serverTimestamp()
+                "timestamp":  firebase.database.ServerValue.TIMESTAMP
+
+
                // "width": this._width,
               //  "height": this._height
               }
@@ -190,7 +196,7 @@ export class ExpComponent {
     this.loadingImg.style.position =  "absolute";
     this.loadingImg.style.marginTop = "-25px";
     this.loadingImg.style.zIndex = 1000;
-
+   // this.date = (firebase.database.ServerValue.TIMESTAMP);
     if(!this.typing)
     event.target.parentNode.parentNode.append(this.loadingImg);
     this.typing = true;
@@ -211,7 +217,7 @@ export class ExpComponent {
 
             stickyRef.update({
               "sdata": this.pText,
-              "timestamp": fs.FieldValue.serverTimestamp()
+              "timestamp":  firebase.database.ServerValue.TIMESTAMP
             }
             )
               .then(function () {
