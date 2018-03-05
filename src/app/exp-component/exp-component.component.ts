@@ -97,13 +97,14 @@ export class ExpComponent {
           else {
             const collection: AngularFirestoreCollection<any> = this.afs.collection(`users/${this.userid}/userData`);
            // const collection$: Observable<Sticky> = collection.add
-         
+           const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+           console.log("ttjime"+timestamp);
             collection.add  ({
                 "sdata": this.pText,
                 "top": this._topLeft.top,
                 "left": this._topLeft.left,
                 "Scolor": this._StickyColorr,
-                "timestamp":  firebase.database.ServerValue.TIMESTAMP
+                "timestamp":  timestamp
 
 
                // "width": this._width,
@@ -214,10 +215,10 @@ export class ExpComponent {
             const stickyRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${this.userid}/userData/${this._stickyID}`);
 
 
-
+            const timestamp = firebase.firestore.FieldValue.serverTimestamp();
             stickyRef.update({
               "sdata": this.pText,
-              "timestamp":  firebase.database.ServerValue.TIMESTAMP
+              "timestamp":  timestamp
             }
             )
               .then(function () {
