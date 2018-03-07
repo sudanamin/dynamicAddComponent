@@ -95,7 +95,7 @@ export class AuthService {
   }
 
   private socialSignIn(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.auth.signInWithRedirect(provider)
       .then((credential) => {
         this.authState = credential.user
         this.updateUserData()
