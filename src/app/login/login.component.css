@@ -149,5 +149,7 @@ h2
 
  .play
 {
+	margin-top: 8px;
 	color: rgb(152, 207, 23);
+	text-align: center;
 }
