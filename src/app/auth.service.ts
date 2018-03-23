@@ -101,7 +101,7 @@ export class AuthService {
         this.updateUserData()
         this.router.navigate(['/members']);
       })
-      .catch(error => console.log(error));
+      .catch(error => alert(error));
   }
 
 
