@@ -17,7 +17,8 @@ import { AuthGuard } from './auth.guard';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';////////////
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { PrivacyComponent } from './privacy/privacy.component';////////////
 //import { AngularFireAuth } from 'angularfire2/auth';
 
 
@@ -40,7 +41,8 @@ var firebaseConfig = {
     LoginComponent,
     MembersComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule ,FormsModule,
