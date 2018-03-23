@@ -80,6 +80,9 @@ export class MembersComponent implements OnInit {
 
 
      ngOnInit(){ }
+     ngOnDestroy(): void {
+      document.body.style.height = "100%";
+  }
   
     /* setColor(event){
      // console.log("click event occur");
