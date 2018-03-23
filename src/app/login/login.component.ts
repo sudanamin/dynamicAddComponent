@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
  error:any;
  email:any;
  password:any;
+ canHideModal:any;
+
   constructor(public auth: AuthService,private router: Router) {
 
      
@@ -24,9 +26,26 @@ export class LoginComponent implements OnInit {
   
 
   ngOnInit() {
+  //  Promise loa = new Promise();
     if(this.auth.user ){
       this.router.navigate(['/members']);
     }
+
+  //  var initFinished = false,
+   // this.canHideModal = false;
+   
+      this.canHideModal =  new Promise(function(resolve , reject){
+        setTimeout(() =>  resolve(true), 4000);
+       })
+
+      
+     /* if (initFinished === true) {
+          //hide modal
+      } */
+     // this.canHideModal = true;
+  
+
+
   }
 
   ngAfterViewInit() {

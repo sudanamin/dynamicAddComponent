@@ -1,5 +1,6 @@
 
-<div  *ngIf="auth.user | async; then loading else login">here is ignored</div>
+<!-- <div  *ngIf="auth.user | async; then loading else login">here is ignored</div> -->
+<div  *ngIf="canHideModal | async; then login else loading"></div> 
 
 <ng-template #login>
 <!--<div class="form-container ">
