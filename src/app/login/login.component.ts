@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
    // this.canHideModal = false;
    
       this.canHideModal =  new Promise(function(resolve , reject){
-        setTimeout(() =>  resolve(true), 4000);
+        setTimeout(() =>  resolve(true), 2000);
        })
 
       
